@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Hi  There</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</head>
+<body ng-app="app">
+<div ng-controller="MainController">
+  <h1>{{message}}</h1>
+  <h2>First Name: {{person.firstName}}</h2>
+  <h2>Last Name: {{person.lastName}}</h2>
+  <h3>From $http get </h3>
+   <h2>User First Name: {{user.login}}</h2>
+  <h2>User Last Name: {{user.id}}</h2>
+ <form name="searchForm" ng-submit="getSearchData()">
+  <input type="search" name="searchName" placeholder="Enter Image Name" ng-model="searchName"></input>
+  <button  >Search</button>
+ </form>
+  <img ng-src="{{image}}"  height="500" width="500"/>
+      <select name="filterRepos" ng-model="filterRepos">
+       <option value="+name">name</option>
+       <option value="+stargazers_count">Stargazers</option>
+       <option value="-language">language</option>
+     </select>
+     
+   <table>
+     <thead>
+     <tr>
+     <td>Name</td>
+     <td>Star</td>
+     <td>Language</td>
+     </tr>
+     </thead>
+     <tbody>
+
+     <tr ng-repeat="repo in repos| orderBy:filterRepos">
+      <td>{{repo.name}}</td>
+      <td>{{repo.stargazers_count}}</td>
+      <td>{{repo.language}}</td>
+     </tr>
+     </tbody>
+   </table>
+</div>
+
+</body>
+</html>
